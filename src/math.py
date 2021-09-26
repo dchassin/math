@@ -2,17 +2,21 @@
 """math [OPTIONS...]
 
   Process input lines as python math expressions.  If input is a tty,
-  then interactive mode is used.
+  then interactive mode is used. For details on math functions, see
+  the python `math` module. General math syntax follows python syntax
+  conventions, e.g., `2**3` is "2 raised to the power 3".
 
 OPTIONS
 
   The following command line options are supported:
 
-    -d|--debug       enable debugging traceback output when errors are reported
+    -d|--debug            enable debugging traceback output when errors are reported
 
-    -h|--help|help   print this help information
+    -h|--help|help        print this help information
 
-    -s|--silent      disable initial startup information
+    -s|--silent           disable initial startup information
+
+    -v|--version|version  print the version number
 
 GLOBALS
 
@@ -42,6 +46,10 @@ if "-h" in sys.argv or "--help" in sys.argv or "help" in sys.argv:
         help(__name__)
     else:
         print("Syntax:",__doc__)
+    quit(0)
+
+if "-v" in sys.argv or "--version" in sys.argv or "version" in sys.argv:
+    print(version)
     quit(0)
 
 if sys.stdin.isatty() and not "-s" in sys.argv and not "--silent" in sys.argv:
