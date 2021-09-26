@@ -12,12 +12,16 @@ TARGET=$(PREFIX)/math
 ARCHIVE=../archive
 
 all: Makefile
+	@chmod +x $(TARGET)
 
 clean:
 
 install:
 	@cp $(SOURCE) $(TARGET)
 	@chmod +x $(TARGET)
+
+uninstall:
+	@rm -rf $(TARGET)
 
 archive: $(ARCHIVE)/v$(VERSION).tar.gz
 
