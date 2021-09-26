@@ -2,7 +2,7 @@
 
 VERSION=$(shell ./math.py version)
 
-SOURCE=math.py
+SOURCE=src/math.py
 
 ifndef PREFIX
 PREFIX=/usr/local/bin
