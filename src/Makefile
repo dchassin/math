@@ -1,18 +1,20 @@
 # math makefile
 
-VERSION=$(shell ./math.py version)
+SRCDIR=$(PWD)
 
-SOURCE=src/math.py
+SOURCE=$(SRCDIR)/math.py
+ARCHIVE=$(subst /src,/archive,$(SRCDIR))
+$(info $(ARCHIVE))
 
 ifndef PREFIX
 PREFIX=/usr/local/bin
 endif
 TARGET=$(PREFIX)/math
 
-ARCHIVE=../archive
+VERSION=$(shell $(SOURCE) version)
 
-all: Makefile
-	@chmod +x $(TARGET)
+all: $(SRCDIR)/Makefile
+	@chmod +x $(SOURCE)
 
 clean:
 
@@ -25,5 +27,5 @@ uninstall:
 
 archive: $(ARCHIVE)/v$(VERSION).tar.gz
 
-$(ARCHIVE)/v$(VERSION).tar.gz: $(shell ls -1 .)
-	@tar cfz $@ $?
+$(ARCHIVE)/v$(VERSION).tar.gz: $(SOURCE) $(SRCDIR)/Makefile
+	(cd $(SRCDIR); tar cfz $@ .)
