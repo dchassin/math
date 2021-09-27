@@ -1,35 +1,48 @@
 [[/README]] - math command syntax
 
-SYNOPSIS
+# Synopsis
 
   math [OPTIONS...]
 
-DESCRIPTION
-
   Process input lines as python math expressions.  If input is a tty,
-  then interactive mode is used.
+  then interactive mode is used. For details on math functions, see
+  the python `math` module. General math syntax follows python syntax
+  conventions, e.g., `2**3` is "2 raised to the power 3".
 
-OPTIONS
+# Options
 
   The following command line options are supported:
 
-    -d|--debug       enable debugging traceback output when errors are reported
+    --copyright|copyright   print the copyright
 
-    -h|--help|help   print this help information
+    --credits|credits       print the credits
 
-    -s|--silent      disable initial startup information
+    -d|--debug              enable debugging traceback output when errors are reported
 
-GLOBALS
+    -h|--help|help          print this help information
+
+    --license|license       print the license
+
+    -s|--silent             disable initial startup information
+
+    -v|--version|version    print the version number
+
+# Global
 
   The following globals can be used in math expressions:
 
     answer    list of answers
 
+    copyright copyright statement
+
+    credits   authoring credits
+
     debug     boolean indicating whether debug is enabled
 
     history   list of inputs
 
+    license   license agreement
+
     prompt    interactive input prompt
 
     version   math version number
-    
