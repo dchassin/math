@@ -34,6 +34,6 @@ esac
 if [ -z "$(which math)" ]; then 
     warning "installation folder not in current path; use 'export PATH=/usr/local/bin:\$PATH' to find math"
 else
-    echo "Math $(math version) installed ok"
-    echo "Type 'math license' to read the license agreement"
+    echo "Math $(math version) installed ok."
+    echo "Type 'math license' to read the license agreement, and 'math help' to obtain help."
 fi
