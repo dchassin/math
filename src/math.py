@@ -54,6 +54,8 @@ prompt = "math> "
 debug = False
 answer = []
 history = []
+math_globals = {}
+default_globals = {}
 license = """
 BSD 3-Clause License
 
@@ -125,14 +127,42 @@ def show_prompt(prompt=prompt,prefix="",end=""):
     if sys.stdin.isatty():
         print(f"{prefix}{prompt}",file=sys.stderr,end=end,flush=True)    
 
+def assign(name,value):
+    if name in math_globals:
+        old = math_globals[name]
+    else:
+        old = None
+    math_globals[name] = value
+    return old
+
+def show_dir():
+    result = []
+    for key in math_globals.keys():
+        if not key in default_globals.keys() and not key.startswith("_"):
+            result.append(f"set('{key}',{math_globals[key]})")
+    return "\n".join(result)
+
+def reset():
+    global answer
+    answer = []
+    global history
+    history = []
+    global math_globals
+    math_globals = {"answer":answer, "history":history,"set":assign,"dir":show_dir,"reset":reset}
+    global default_globals
+    if not default_globals:
+        from copy import copy
+        default_globals = copy(math_globals)
+
+reset()
 show_prompt(prefix="\n")
 from math import *
 for line in sys.stdin:
     try:
-        code = line.strip()
-        result = eval(compile(code,'<string>','eval'),globals())
-        if type(result) in [int,float,complex]:
-            history.append(code)
+        last = line.strip()
+        result = eval(compile(last,'<string>','eval'),math_globals)
+        if type(result) in [int,float,complex,type(None),str]:
+            history.append(last)
             answer.append(result)
         print(result,file=sys.stdout,flush=True,end="\n")
     except:
@@ -143,7 +173,7 @@ for line in sys.stdin:
             print(f"TRACEBACK: {e_type}",file=sys.stderr,flush=True)
             print_tb(e_trace,file=sys.stderr)
             print(f"GLOBALS:",file=sys.stderr,flush=True)
-            for key, value in globals().items():
+            for key, value in math_globals.items():
                 if key != "__builtins__":
                     print(f"{key}={value}",file=sys.stderr,flush=True)
     show_prompt()
