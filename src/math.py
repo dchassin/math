@@ -45,7 +45,7 @@ GLOBALS
     version   math version number
 """
 
-import sys
+import sys, os
 
 copyright = "Copyright (C) 2021, David P. Chassin"
 credits = "Written by David P. Chassin"
@@ -107,6 +107,11 @@ if "--copyright" in sys.argv or "copyright" in sys.argv:
 
 if "--credits" in sys.argv or "credits" in sys.argv:
     print(credits)
+    quit(0)
+
+if "--uninstall" in sys.argv or "uninstall" in sys.argv:
+    os.remove(sys.argv[0])
+    print(f"{sys.argv[0]} removed")
     quit(0)
 
 if sys.stdin.isatty() and not "-s" in sys.argv and not "--silent" in sys.argv:
