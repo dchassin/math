@@ -19,8 +19,7 @@ all: $(SRCDIR)/Makefile
 clean:
 
 install:
-	@cp $(SOURCE) $(TARGET)
-	@chmod +x $(TARGET)
+	@ln -sf $(SOURCE) $(TARGET)
 
 uninstall:
 	@rm -rf $(TARGET)
