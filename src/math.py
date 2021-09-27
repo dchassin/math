@@ -10,13 +10,19 @@ OPTIONS
 
   The following command line options are supported:
 
-    -d|--debug            enable debugging traceback output when errors are reported
+    --copyright|copyright   print the copyright
 
-    -h|--help|help        print this help information
+    --credits|credits       print the credits
 
-    -s|--silent           disable initial startup information
+    -d|--debug              enable debugging traceback output when errors are reported
 
-    -v|--version|version  print the version number
+    -h|--help|help          print this help information
+
+    --license|license       print the license
+
+    -s|--silent             disable initial startup information
+
+    -v|--version|version    print the version number
 
 GLOBALS
 
@@ -89,6 +95,18 @@ if "-h" in sys.argv or "--help" in sys.argv or "help" in sys.argv:
 
 if "-v" in sys.argv or "--version" in sys.argv or "version" in sys.argv:
     print(version)
+    quit(0)
+
+if "--license" in sys.argv or "license" in sys.argv:
+    print(license)
+    quit(0)
+
+if "--copyright" in sys.argv or "copyright" in sys.argv:
+    print(copyright)
+    quit(0)
+
+if "--credits" in sys.argv or "credits" in sys.argv:
+    print(credits)
     quit(0)
 
 if sys.stdin.isatty() and not "-s" in sys.argv and not "--silent" in sys.argv:
