@@ -7,7 +7,7 @@ Online documentation is available https://docs.gridlabd.us/index.html?owner=dcha
 To install `math`, run the following commands
 
 ~~~
-% curl -sL https://raw.githubusercontent.com/dchassin/math/master/src/math > /usr/local/bin/math
+% curl -sL https://raw.githubusercontent.com/dchassin/math/master/src/math.py > /usr/local/bin/math
 % chmod +x /usr/local/bin/math
 % export PATH=/usr/local/bin:$PATH
 ~~~
